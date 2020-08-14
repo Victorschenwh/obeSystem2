@@ -1,5 +1,7 @@
 package com.dbsy.obe.controller;
 
+import com.dbsy.obe.annotation.Authority;
+import com.dbsy.obe.myenum.Role;
 import com.dbsy.obe.pojo.Teacher;
 import com.dbsy.obe.service.TeacherService;
 import com.dbsy.obe.util.News;
@@ -15,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/teacher")
+@Authority(Role.Admin)
 public class TeacherController {
     @Autowired
     @Qualifier("teacherServiceImp")
@@ -22,6 +25,7 @@ public class TeacherController {
 
 
     @RequestMapping("")
+    @Authority(Role.Teacher)
     public String teacher() {
         return "baseInfo/teacher";
     }
@@ -29,6 +33,7 @@ public class TeacherController {
 
     @RequestMapping("/list")
     @ResponseBody
+    @Authority(Role.Teacher)
     public Map list(Map map) {
         Map m = new HashMap();
         m.put("total", teacherService.listCount(map));
@@ -75,12 +80,14 @@ public class TeacherController {
 
     @ResponseBody
     @RequestMapping("/get/{id}")
+    //@Authority(Role.Teacher)
     public Map get(@PathVariable("id") int id) {
         return News.success("成功", teacherService.get(id));
     }
 
     @ResponseBody
     @RequestMapping("/getAll")
+    //@Authority(Role.Teacher)
     public Map getAll() {
         return News.success("成功", teacherService.getAll());
     }

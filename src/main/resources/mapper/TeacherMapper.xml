@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dbsy.obe.mapper.TeacherMapper">
-    <!-- <resultMap id="BaseResultMap" type="com.dbsy.obe.pojo.Teacher">
-       <constructor>
-         <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-         <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
-         <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
-         <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-         <arg column="gender" javaType="java.lang.Boolean" jdbcType="BIT" />
-         <arg column="birthday" javaType="java.util.Date" jdbcType="DATE" />
-         <arg column="title_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-         <arg column="department_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-         <arg column="post" javaType="java.lang.String" jdbcType="VARCHAR" />
-       </constructor>
-     </resultMap>-->
+
     <insert id="insert" parameterType="com.dbsy.obe.pojo.Teacher">
     insert into teacher (id, username, password, 
       name, gender, birthday, title_id, 
-      department_id, post)
+      department_id, post,phone_number, email,
+      is_lock)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{birthday,jdbcType=DATE}, #{titleId,jdbcType=INTEGER}, 
-      #{departmentId,jdbcType=INTEGER}, #{post,jdbcType=VARCHAR})
+      #{departmentId,jdbcType=INTEGER}, #{post,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{isLock,jdbcType=BIT})
   </insert>
     <insert id="insertSelective" parameterType="com.dbsy.obe.pojo.Teacher">
         insert into teacher
@@ -52,6 +42,15 @@
             <if test="post != null">
                 post,
             </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="isLock != null">
+                is_lock,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -80,6 +79,15 @@
             </if>
             <if test="post != null">
                 #{post,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="isLock != null">
+                #{isLock,jdbcType=BIT},
             </if>
         </trim>
     </insert>

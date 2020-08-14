@@ -25,11 +25,16 @@ public interface TeacherMapper {
     @Delete("delete from teacher where id = #{id}")
     int delete(int id);
 
-    @Update("update teacher set username=#{username},password=#{password},name=#{name},gender=#{gender},birthday=#{birthday},title_id=#{titleId},department_id=#{departmentId},post=#{post} where id=#{id}")
+    @Update("update teacher set username=#{username},password=#{password},name=#{name},gender=#{gender},birthday=#{birthday},title_id=#{titleId}," +
+            "department_id=#{departmentId},post=#{post},phone_number=#{phoneNumber},email=#{email},is_lock=#{isLock}" +
+            " where id=#{id}")
     int update(Teacher teacher);
 
     int batchRemove(int[] ids);
 
     @Select("select * from teacher")
     List<Teacher> getAll();
+
+    @Select("select * from teacher where username = #{username} and password = #{password}")
+    Teacher selectByUsernameAndPassword(String username, String password);
 }
