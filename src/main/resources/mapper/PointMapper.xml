@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbsy.obe.mapper.PointMapper">
+  <!--<resultMap id="BaseResultMap" type="com.dbsy.obe.pojo.Point">
+    <constructor>
+      <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="introduction" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="requirement_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>-->
+  <insert id="insert" parameterType="com.dbsy.obe.pojo.Point">
+    insert into point (id, synopsis,introduction, requirement_id
+      )
+    values (#{id,jdbcType=INTEGER},#{synopsis,jdbcType=INTEGER}, #{introduction,jdbcType=VARCHAR}, #{requirementId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbsy.obe.pojo.Point">
+    insert into point
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="requirementId != null">
+        requirement_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementId != null">
+        #{requirementId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="list" resultType="com.dbsy.obe.pojo.Point">
+    select * from point
+    <where>
+      <if test="name != null">
+        or name like concat('%',#{name},'%')
+      </if>
+    </where>
+    <if test="page!=null and pageSize != null">
+      limit (#{page}-1)* #{pageSize},#{pageSize}
+    </if>
+  </select>
+
+  <select id="listCount" resultType="int">
+    select count(*) from point
+    <where>
+      <if test="name != null">
+        or name like concat('%',#{name},'%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="batchRemove">
+    delete from point where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+</mapper>

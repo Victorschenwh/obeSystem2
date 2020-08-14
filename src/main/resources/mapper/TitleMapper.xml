@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbsy.obe.mapper.TitleMapper">
+ <!-- <resultMap id="BaseResultMap" type="com.dbsy.obe.pojo.Title">
+    <constructor>
+      <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>-->
+  <insert id="insert" parameterType="com.dbsy.obe.pojo.Title">
+    insert into title (id, name, introduce
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbsy.obe.pojo.Title">
+    insert into title
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="list" resultType="com.dbsy.obe.pojo.Title">
+    select * from title
+    <where>
+      <if test="name != null">
+        or name like concat('%',#{name},'%')
+      </if>
+      <if test="username != null">
+        or username like concat('%',#{username},'%')
+      </if>
+    </where>
+    <if test="page!=null and pageSize != null">
+      limit (#{page}-1)* #{pageSize},#{pageSize}
+    </if>
+  </select>
+
+  <select id="listCount" resultType="int">
+    select count(*) from title
+    <where>
+      <if test="name != null">
+        or name like concat('%',#{name},'%')
+      </if>
+      <if test="username != null">
+        or username like concat('%',#{username},'%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="batchRemove">
+    delete from title where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+</mapper>

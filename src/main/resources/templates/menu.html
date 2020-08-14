@@ -1,0 +1,119 @@
+<!--<div class="col-md-2 col-sm-2">
+
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                    基本信息管理
+                </a>
+            </div>
+            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a onclick="goto('/teacher')" href="#teacher" class="list-group-item list-group-item-action">教师基本信息</a>
+                        <a onclick="goto('/major')" href="#major"
+                           class="list-group-item list-group-item-action">专业基本信息</a>
+                        <a onclick="goto('/clazz')" href="#clazz"
+                           class="list-group-item list-group-item-action">班级基本信息</a>
+                        <a onclick="goto('/department')" href="#department"
+                           class="list-group-item list-group-item-action">院系基本信息</a>
+                        <a onclick="goto('/plan')" href="#plan"
+                           class="list-group-item list-group-item-action">培养目标基本信息</a>
+                        <a onclick="goto('/point')" href="#point"
+                           class="list-group-item list-group-item-action">观测点基本信息</a>
+                        <a onclick="goto('/requirement')" href="#requirement"
+                           class="list-group-item list-group-item-action">毕业要求基本信息</a>
+                        <a onclick="goto('/target')" href="#target" class="list-group-item list-group-item-action">培养目标基本信息</a>
+                        <a onclick="goto('/title')" href="#title" class="list-group-item list-group-item-action">教师职称基本信息</a>
+                        <a onclick="goto('/plan')" href="#plan"
+                           class="list-group-item list-group-item-action">培养目标基本信息</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<nav th:fragment="menu" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="sidebar-sticky pt-3">
+
+        <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>基本信息管理</span>
+            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+            </a>
+        </h4>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    <span data-feather="home"></span>
+                    首页 <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a onclick="goto('/teacher')" href="#teacher" target="frame" class="nav-link">教师信息</a>
+            </li>
+            <li class="nav-item">
+                <a onclick="goto('/major')" href="#major"
+                   class="nav-link">专业基本信息</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/course')" href="#course"
+                   class="nav-link">课程基本信息</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/clazz')" href="#clazz"
+                   class="nav-link">班级基本信息</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/department')" href="#department"
+                   class="nav-link">院系基本信息</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/title')" href="#title" class="nav-link">职称信息</a>
+            </li>
+
+        </ul>
+
+        <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>培养计划制定</span>
+            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+            </a>
+        </h4>
+        <ul class="nav flex-column mb-2">
+
+            <li class="nav-item">
+                <a onclick="goto('/plan')" href="#plan"
+                   class="nav-link">培养计划信息</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/target')" href="#target" class="nav-link">培养目标信息</a>
+            </li>
+            <li class="nav-item">
+                <a onclick="goto('/requirement')" href="#requirement"
+                   class="nav-link">毕业要求信息</a>
+            </li>
+            <li class="nav-item">
+                <a onclick="goto('/point')" href="#point"
+                   class="nav-link">观测点信息</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/coursePlan')" href="#point"
+                   class="nav-link">课程计划</a>
+            </li>
+
+            <li class="nav-item">
+                <a onclick="goto('/coursePoint')" href="#point"
+                   class="nav-link">课程观测点</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

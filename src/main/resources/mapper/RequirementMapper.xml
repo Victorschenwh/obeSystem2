@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbsy.obe.mapper.RequirementMapper">
+ <resultMap id="BaseResultMap" type="com.dbsy.obe.pojo.Requirement">
+    <constructor>
+      <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="synopsis" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="introduction" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="plan_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.dbsy.obe.pojo.Requirement">
+    insert into requirement (id, synopsis, introduction, 
+      plan_id)
+    values (#{id,jdbcType=INTEGER}, #{synopsis,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{planId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dbsy.obe.pojo.Requirement">
+    insert into requirement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="synopsis != null">
+        synopsis,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="synopsis != null">
+        #{synopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="list" resultType="com.dbsy.obe.pojo.Requirement">
+    select * from requirement
+    <where>
+      <if test="name != null">
+        or name like concat('%',#{name},'%')
+      </if>
+      <if test="username != null">
+        or username like concat('%',#{username},'%')
+      </if>
+    </where>
+    <if test="page!=null and pageSize != null">
+      limit (#{page}-1)* #{pageSize},#{pageSize}
+    </if>
+  </select>
+
+  <select id="listCount" resultType="int">
+    select count(*) from requirement
+    <where>
+      <if test="name != null">
+        or name like concat('%',#{name},'%')
+      </if>
+      <if test="username != null">
+        or username like concat('%',#{username},'%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="batchRemove">
+    delete from requirement where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+</mapper>

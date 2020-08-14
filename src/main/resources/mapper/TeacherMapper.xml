@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbsy.obe.mapper.TeacherMapper">
+    <!-- <resultMap id="BaseResultMap" type="com.dbsy.obe.pojo.Teacher">
+       <constructor>
+         <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+         <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+         <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+         <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+         <arg column="gender" javaType="java.lang.Boolean" jdbcType="BIT" />
+         <arg column="birthday" javaType="java.util.Date" jdbcType="DATE" />
+         <arg column="title_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+         <arg column="department_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+         <arg column="post" javaType="java.lang.String" jdbcType="VARCHAR" />
+       </constructor>
+     </resultMap>-->
+    <insert id="insert" parameterType="com.dbsy.obe.pojo.Teacher">
+    insert into teacher (id, username, password, 
+      name, gender, birthday, title_id, 
+      department_id, post)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{birthday,jdbcType=DATE}, #{titleId,jdbcType=INTEGER}, 
+      #{departmentId,jdbcType=INTEGER}, #{post,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.dbsy.obe.pojo.Teacher">
+        insert into teacher
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="titleId != null">
+                title_id,
+            </if>
+            <if test="departmentId != null">
+                department_id,
+            </if>
+            <if test="post != null">
+                post,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=BIT},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=DATE},
+            </if>
+            <if test="titleId != null">
+                #{titleId,jdbcType=INTEGER},
+            </if>
+            <if test="departmentId != null">
+                #{departmentId,jdbcType=INTEGER},
+            </if>
+            <if test="post != null">
+                #{post,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="list" resultType="com.dbsy.obe.pojo.Teacher">
+        select * from teacher
+        <where>
+            <if test="name != null">
+                or name like concat('%',#{name},'%')
+            </if>
+            <if test="username != null">
+                or username like concat('%',#{username},'%')
+            </if>
+        </where>
+        <if test="page!=null and pageSize != null">
+            limit (#{page}-1)* #{pageSize},#{pageSize}
+        </if>
+    </select>
+
+    <select id="listCount" resultType="int">
+        select count(*) from teacher
+        <where>
+            <if test="name != null">
+                or name like concat('%',#{name},'%')
+            </if>
+            <if test="username != null">
+                or username like concat('%',#{username},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="batchRemove">
+        delete from teacher where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

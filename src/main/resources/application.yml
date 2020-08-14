@@ -1,0 +1,20 @@
+server:
+  port: 80
+
+#  数据库连接配置
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.40.115.18:3306/obe?useunicode=true&characterEncoding=utf8&serverTimezone=UTC
+
+#  mybatis配置
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  #config-location: classpath:mybatis/mybatis-config.xml
+  #typeAliasesPackage: top.maof.sm.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false  #禁用二级缓存
+    local-cache-scope: statement   #一级缓存指定为session级别
