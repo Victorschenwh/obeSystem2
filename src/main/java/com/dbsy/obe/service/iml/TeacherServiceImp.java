@@ -89,4 +89,9 @@ public class TeacherServiceImp implements TeacherService {
     public Teacher selectByUsernameAndPassword(String username, String password) {
         return teacherMapper.selectByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public Teacher selectByEmail(String email) {
+        return teacherMapper.selectByEmail(email);
+    }
 }
