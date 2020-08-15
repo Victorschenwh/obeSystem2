@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/coursePlan")
-//@Authority({Role.Admin})
+@Authority({Role.Admin})
 public class CoursePlanController {
 
     @Autowired
@@ -25,14 +25,14 @@ public class CoursePlanController {
     CoursePlanService coursePlanService;
 
 
-
+    @Authority({Role.Teacher})
     @RequestMapping("")
     public String coursePlan() {
         return "baseInfo/coursePlan";
     }
 
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @RequestMapping("/list")
     @ResponseBody
     public Map list(Map map) {
@@ -81,14 +81,14 @@ public class CoursePlanController {
         return News.fail("添加失败");
     }
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/get/{id}")
     public Map get(@PathVariable("id") int id) {
         return News.success("成功", coursePlanService.get(id));
     }
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/getAll")
     public Map getAll() {
