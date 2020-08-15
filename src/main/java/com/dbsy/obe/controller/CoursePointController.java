@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -90,5 +91,28 @@ public class CoursePointController {
         return News.success("成功", coursePointService.getAll());
     }
 
+    @Authority({Role.Teacher})
+    @ResponseBody
+    @RequestMapping("/getCoursePointsByCourseId/{courseId}")
+    public Map getCoursePointsByCourseId(@PathVariable("courseId") int courseId){
+        List list = coursePointService.getCoursePointsByCourseId(courseId);
+        if ( list != null) {
+            return News.success("成功",list);
+
+        }
+        return News.fail("查找失败");
+    }
+
+    @Authority({Role.Teacher})
+    @ResponseBody
+    @RequestMapping("/getCoursePointsByPointId/{pointId}")
+    public Map getCoursePointsByPointId(@PathVariable("pointId") int pointId){
+        List list = coursePointService.getCoursePointsByPointId(pointId);
+        if ( list != null) {
+            return News.success("成功",list);
+
+        }
+        return News.fail("查找失败");
+    }
 
 }

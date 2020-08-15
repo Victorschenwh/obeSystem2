@@ -2,6 +2,7 @@ package com.dbsy.obe.service.iml;
 
 import com.dbsy.obe.mapper.CoursePointMapper;
 import com.dbsy.obe.pojo.CoursePoint;
+import com.dbsy.obe.pojo.Major;
 import com.dbsy.obe.service.CoursePointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -55,7 +56,7 @@ public class CoursePointServiceImp implements CoursePointService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return coursePointMapper.delete(id);
     }
@@ -84,5 +85,16 @@ public class CoursePointServiceImp implements CoursePointService {
     @Override
     public List<CoursePoint> getAll() {
         return coursePointMapper.getAll();
+    }
+
+    @Override
+    public List<CoursePoint> getCoursePointsByCourseId(int courseId){
+        return coursePointMapper.getCoursePointsByCourseId(courseId);
+    }
+
+
+    @Override
+    public List<CoursePoint> getCoursePointsByPointId(int pointId){
+        return coursePointMapper.getCoursePointsByPointId(pointId);
     }
 }

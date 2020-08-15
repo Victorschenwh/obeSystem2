@@ -1,6 +1,7 @@
 package com.dbsy.obe.mapper;
 
 import com.dbsy.obe.pojo.CoursePoint;
+import com.dbsy.obe.pojo.Plan;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -32,4 +33,10 @@ public interface CoursePointMapper {
 
     @Select("select * from course_point")
     List<CoursePoint> getAll();
+
+    @Select("select * from coursepoint where course_id =#{courseId}")
+    List<CoursePoint> getCoursePointsByCourseId(int courseId);
+
+    @Select("select * from coursepoint where point_id =#{pointId}")
+    List<CoursePoint> getCoursePointsByPointId(int pointId);
 }

@@ -25,4 +25,9 @@ public class AdminServiceImp implements AdminService {
     public Admin selectByUsernameAndPassword(String username, String password) {
         return adminMapper.selectByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public Admin selectByEmail(String email) {
+        return adminMapper.selectByEmail(email);
+    }
 }

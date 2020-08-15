@@ -51,7 +51,7 @@ public class PointServiceImp implements PointService {
     }
 
     @Override
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     @Transactional
     public int delete(int id) {
         return pointMapper.delete(id);

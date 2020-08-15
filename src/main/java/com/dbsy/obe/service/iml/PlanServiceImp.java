@@ -54,7 +54,7 @@ public class PlanServiceImp implements PlanService {
     }
 
     @Override
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     @Transactional
     public int delete(int id) {
         return planMapper.delete(id);

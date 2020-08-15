@@ -8,21 +8,21 @@ public class News {
     }
 
     public static Map success() {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", 1);
         map.put("msg", "成功");
         return map;
     }
 
     public static Map success(String msg) {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", 1);
         map.put("msg", msg);
         return map;
     }
 
     public static Map success(String msg, Object data) {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", 1);
         map.put("msg", msg);
         map.put("data", data);
@@ -30,21 +30,21 @@ public class News {
     }
 
     public static Map fail(int code, String msg) {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", code);
         map.put("msg", msg);
         return map;
     }
 
     public static Map fail() {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", -1);
         map.put("msg", "失败");
         return map;
     }
 
     public static Map fail(String msg) {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", -1);
         map.put("msg", msg);
         return map;

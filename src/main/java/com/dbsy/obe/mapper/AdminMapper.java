@@ -14,4 +14,7 @@ public interface AdminMapper {
     @Select("select * from admin where username = #{username} and password = #{password}")
     Admin selectByUsernameAndPassword(String username, String password);
 
+    @Select("select * from admin where email = #{email}")
+    Admin selectByEmail(String email);
+
 }
