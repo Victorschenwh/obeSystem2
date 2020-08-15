@@ -83,5 +83,10 @@ public class RequirementServiceImp implements RequirementService {
     public List<Requirement> getAll() {
         return requirementMapper.getAll();
     }
+
+    @Override
+    public List<Requirement> getRequirementsByPlanId(int planId) {
+        return requirementMapper.getRequirementsByPlanId(planId);
+    }
 }
 
