@@ -25,7 +25,7 @@ public interface TargetMapper {
     @Delete("delete from target where id = #{id}")
     int delete(int id);
 
-    @Update("update requirement set synopsis=#{synopsis},introduction=#{introduction},plan_id=#{planId} where id=#{id}")
+    @Update("update target set synopsis=#{synopsis},introduction=#{introduction},plan_id=#{planId} where id=#{id}")
     int update(Target target);
 
     int batchRemove(int[] ids);
