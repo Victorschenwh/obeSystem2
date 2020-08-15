@@ -55,7 +55,7 @@ public class TeacherServiceImp implements TeacherService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return teacherMapper.delete(id);
     }
@@ -88,5 +88,10 @@ public class TeacherServiceImp implements TeacherService {
     @Override
     public Teacher selectByUsernameAndPassword(String username, String password) {
         return teacherMapper.selectByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public Teacher selectByEmail(String email) {
+        return teacherMapper.selectByEmail(email);
     }
 }

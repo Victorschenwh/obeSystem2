@@ -25,4 +25,6 @@ public interface TeacherService {
     List<Teacher> getAll();
 
     Teacher selectByUsernameAndPassword(String username, String password);
+
+    Teacher selectByEmail(String email);
 }

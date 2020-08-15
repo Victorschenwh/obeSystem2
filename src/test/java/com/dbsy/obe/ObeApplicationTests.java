@@ -1,6 +1,7 @@
 package com.dbsy.obe;
 
 import com.dbsy.obe.annotation.Authority;
+import com.dbsy.obe.util.SendEmail;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +17,9 @@ class ObeApplicationTests {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Test
-    void contextLoads() {
-        long i = redisTemplate.opsForValue().increment("i", 10);
-        log.info(i + "");
+    void contextLoads() throws Exception {
+        SendEmail.send("3286408344@qq.com", "nihao", "123456");
+        //Thread.sleep(10000);
     }
 
 }

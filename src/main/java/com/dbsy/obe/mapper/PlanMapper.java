@@ -26,7 +26,7 @@ public interface PlanMapper {
     @Delete("delete from plan where id = #{id}")
     int delete(int id);
 
-    @Update("update major set name=#{name},year=#{year},introduce=#{introduce},major_id=#{majorId} where id=#{id}")
+    @Update("update plan set name=#{name},year = #{year},introduce=#{introduce},major_id=#{majorId} where id=#{id}")
     int update(Plan plan);
 
     int batchRemove(int[] ids);
