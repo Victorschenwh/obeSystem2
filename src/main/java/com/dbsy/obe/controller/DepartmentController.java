@@ -1,5 +1,7 @@
 package com.dbsy.obe.controller;
 
+import com.dbsy.obe.annotation.Authority;
+import com.dbsy.obe.myenum.Role;
 import com.dbsy.obe.pojo.Department;
 import com.dbsy.obe.service.DepartmentService;
 import com.dbsy.obe.util.News;
@@ -15,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/department")
+@Authority(Role.Admin)
 public class DepartmentController {
 
     @Autowired
@@ -23,6 +26,7 @@ public class DepartmentController {
 
 
     @RequestMapping("")
+    @Authority(Role.Teacher)
     public String department() {
         return "baseInfo/department";
     }
@@ -30,6 +34,7 @@ public class DepartmentController {
 
     @RequestMapping("/list")
     @ResponseBody
+    @Authority(Role.Teacher)
     public Map list(Map map) {
         Map m = new HashMap();
         m.put("total", departmentService.listCount(map));
@@ -82,6 +87,7 @@ public class DepartmentController {
 
     @RequestMapping("/getAll")
     @ResponseBody
+//    @Authority(Role.Teacher)
     public Map getAll() {
         return News.success("学院数据请求成功", departmentService.getAll());
     }
