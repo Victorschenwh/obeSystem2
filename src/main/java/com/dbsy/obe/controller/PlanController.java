@@ -12,23 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/plan")
-//@Authority({Role.Admin})
+@Authority({Role.Admin})
 public class PlanController {
     @Autowired
     @Qualifier("planServiceImp")
     PlanService planService;
 
+    @Authority({Role.Teacher})
     @RequestMapping("")
     public String major() {
         return "baseInfo/plan";
     }
 
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @RequestMapping("/list")
     @ResponseBody
     public Map list(Map map) {
@@ -75,7 +77,7 @@ public class PlanController {
         return News.fail("添加失败");
     }
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/get/{id}")
     public Map get(@PathVariable("id") int id) {
@@ -89,12 +91,13 @@ public class PlanController {
         return News.success("成功", planService.getAll());
     }
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/getPlansByMajorId/{majorId}")
     public Map getPlansByMajorId(@PathVariable("majorId") int majorId){
-        if (planService.getPlansByMajorId(majorId) != null) {
-            return News.success("成功",planService.getPlansByMajorId(majorId));
+        List list = planService.getPlansByMajorId(majorId);
+        if ( list != null) {
+            return News.success("成功",list);
 
         }
         return News.fail("查找失败");

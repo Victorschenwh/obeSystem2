@@ -23,4 +23,6 @@ public interface TargetService {
     int batchRemove(int[] ids);
 
     List<Target> getAll();
+
+    List<Target> getTargetsByPlanId(int planId);
 }

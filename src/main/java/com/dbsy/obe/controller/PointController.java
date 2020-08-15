@@ -12,23 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/point")
-//@Authority({Role.Admin})
+@Authority({Role.Admin})
 public class PointController {
     @Autowired
     @Qualifier("pointServiceImp")
     PointService pointService;
 
+    @Authority({Role.Teacher})
     @RequestMapping("")
     public String major() {
         return "baseInfo/point";
     }
 
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @RequestMapping("/list")
     @ResponseBody
     public Map list(Map map) {
@@ -75,7 +77,7 @@ public class PointController {
         return News.fail("添加失败");
     }
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/get/{id}")
     public Map get(@PathVariable("id") int id) {
@@ -83,19 +85,20 @@ public class PointController {
     }
 
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/getAll")
     public Map getAll() {
         return News.success("成功", pointService.getAll());
     }
 
-//    @Authority({Role.Teacher})
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/getPointsByRequirementId/{requirementId}")
     public Map getPointsByRequirementId(@PathVariable("requirementId") int requiremntId){
-        if (pointService.getPointsByRequirementId(requiremntId) != null) {
-            return News.success("成功",pointService.getPointsByRequirementId(requiremntId));
+        List list = pointService.getPointsByRequirementId(requiremntId);
+        if (list != null) {
+            return News.success("成功",list);
 
         }
         return News.fail("查找失败");

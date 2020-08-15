@@ -1,5 +1,7 @@
 package com.dbsy.obe.controller;
 
+import com.dbsy.obe.annotation.Authority;
+import com.dbsy.obe.myenum.Role;
 import com.dbsy.obe.pojo.Title;
 import com.dbsy.obe.service.TitleService;
 import com.dbsy.obe.util.News;
@@ -15,18 +17,19 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/title")
+@Authority({Role.Admin})
 public class TitleController {
     @Autowired
     @Qualifier("titleServiceImp")
     TitleService titleService;
 
-
+    @Authority({Role.Teacher})
     @RequestMapping("")
     public String title() {
         return "baseInfo/title";
     }
 
-
+    @Authority({Role.Teacher})
     @RequestMapping("/list")
     @ResponseBody
     public Map list(Map map) {
@@ -61,8 +64,9 @@ public class TitleController {
         if (titleService.insert(title) > 0) {
             return News.success();
         }
-        return News.fail("添加失败");
+        return News.fail("编辑失败");
     }
+
 
     @ResponseBody
     @RequestMapping("/update")
@@ -73,13 +77,14 @@ public class TitleController {
         return News.fail("添加失败");
     }
 
+    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/get/{id}")
     public Map get(@PathVariable("id") int id) {
         return News.success("成功", titleService.get(id));
     }
 
-
+    @Authority({Role.Teacher})
     @RequestMapping("/getAll")
     @ResponseBody
     public Map getAll() {
