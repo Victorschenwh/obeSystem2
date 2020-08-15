@@ -23,4 +23,6 @@ public interface RequirementService {
     int batchRemove(int[] ids);
 
     List<Requirement> getAll();
+
+    List<Requirement> getRequirementsByPlanId(int planId);
 }

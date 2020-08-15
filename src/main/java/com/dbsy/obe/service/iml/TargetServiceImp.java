@@ -83,4 +83,9 @@ public class TargetServiceImp implements TargetService {
     public List<Target> getAll() {
         return targetMapper.getAll();
     }
+
+    @Override
+    public List<Target> getTargetsByPlanId(int planId) {
+        return targetMapper.getTargetsByPlanId(planId);
+    }
 }

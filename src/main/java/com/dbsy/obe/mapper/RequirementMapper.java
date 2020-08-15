@@ -25,11 +25,14 @@ public interface RequirementMapper {
     @Delete("delete from requirement where id = #{id}")
     int delete(int id);
 
-    @Update("update requirement set synopsis=#{synopsis},introduction=#{introduction},plan_id=#{planId}, where id=#{id}")
+    @Update("update requirement set synopsis=#{synopsis},introduction=#{introduction},plan_id=#{planId} where id=#{id}")
     int update(Requirement requirement);
 
     int batchRemove(int[] ids);
 
     @Select("select * from requirement")
     List<Requirement> getAll();
+
+    @Select("select * from requirement where plan_id=#{planId}")
+    List<Requirement> getRequirementsByPlanId(int planId);
 }

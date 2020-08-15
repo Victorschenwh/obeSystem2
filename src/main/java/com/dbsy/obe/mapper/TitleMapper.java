@@ -25,7 +25,7 @@ public interface TitleMapper {
     @Delete("delete from title where id = #{id}")
     int delete(int id);
 
-    @Update("update title set name=#{name},introduce=#{introduce}, where id=#{id}")
+    @Update("update title set name=#{name},introduce=#{introduce} where id=#{id}")
     int update(Title title);
 
     int batchRemove(int[] ids);
