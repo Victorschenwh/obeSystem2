@@ -54,7 +54,7 @@ public class RequirementServiceImp implements RequirementService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return requirementMapper.delete(id);
     }

@@ -55,7 +55,7 @@ public class CoursePointServiceImp implements CoursePointService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return coursePointMapper.delete(id);
     }

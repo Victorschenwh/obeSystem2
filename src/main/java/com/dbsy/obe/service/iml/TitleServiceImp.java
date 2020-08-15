@@ -54,7 +54,7 @@ public class TitleServiceImp implements TitleService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return titleMapper.delete(id);
     }

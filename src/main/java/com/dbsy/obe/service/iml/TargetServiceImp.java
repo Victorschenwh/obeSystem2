@@ -54,7 +54,7 @@ public class TargetServiceImp implements TargetService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return targetMapper.delete(id);
     }

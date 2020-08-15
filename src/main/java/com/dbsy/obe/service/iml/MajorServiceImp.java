@@ -56,7 +56,7 @@ public class MajorServiceImp implements MajorService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return majorMapper.delete(id);
     }

@@ -55,7 +55,7 @@ public class TeacherServiceImp implements TeacherService {
 
     @Override
     @Transactional
-    @CacheEvict("#id")
+    @CacheEvict(key = "#id")
     public int delete(int id) {
         return teacherMapper.delete(id);
     }
