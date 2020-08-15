@@ -39,19 +39,14 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">学院名称：</label>
                             <div class="col-sm-8">
-                                <!--<input id="gender" name="gender" class="form-control" type="text">-->
-                                <select id="departmentId" name="departmentId" class="form-control" required>
-                                    <option value="">
-                                        --请选择--
-                                    </option>
-                                </select>
+                                <input  name="name" class="form-control" type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">学院介绍：</label>
                             <div class="col-sm-8">
-                                <input id="introduce" name="introduce" class="form-control" type="text" required>
+                                <input  name="introduce" class="form-control" type="text" required>
                             </div>
                         </div>
 
@@ -86,12 +81,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">学院名称：</label>
                             <div class="col-sm-8">
-                                <!--<input id="gender" name="gender" class="form-control" type="text">-->
-                                <select name="departmentId" class="form-control" required>
-                                    <option value="">
-                                        --请选择--
-                                    </option>
-                                </select>
+                                <input  name="name" class="form-control" type="text" required>
                             </div>
                         </div>
 
@@ -215,49 +205,26 @@
                 columns: [{
                     checkbox: true,
                     visible: true                  //是否显示复选框
-                }, {
-                    field: 'id',
-                    title: 'id',
-                    width: 120,
-                    align: 'center',
-                    valign: 'middle',
-                },  {
-                    field: 'departmentId',
+                },   {
+                    field: 'name',
                     title: '学院名称',
-                    formatter: function (value, row, index) {
-                        var department = {};
-                        if (value != null) {
-                            $.ajax({
-                                //cache: true,
-                                async: false,
-                                type: "POST",
-                                url: "/department/get/" + value,
-                                data: {},
-                                success: function (data) {
-                                    if (data.code == 1) {
-                                        department = data.data;
-                                    }
-                                }
-                            });
-                        }
-                        return department.name;
-                    }
-                },{
-                        field: 'introduce',
-                        title: '学院简介',
-                    }, {
-                        title: '操作',
-                        field: 'id',
-                        align: 'center',
-                        formatter: function (value, row, index) {
-                            var e = '<a class="btn btn-primary btn-sm " href="#" mce_href="#"  data-toggle="modal" data-target="#edit" title="编辑" onclick="get(' + row.id + ')">编辑</a> ';
-                            var d = '<a class="btn btn-warning btn-sm " href="#" title="删除"  mce_href="#" onclick="remove(\''
-                                + row.id
-                                + '\')">删除</a> ';
 
-                            return e + d;
-                        }
-                    }]
+                },{
+                    field: 'introduce',
+                    title: '学院简介',
+                }, {
+                    title: '操作',
+                    field: 'id',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var e = '<a class="btn btn-primary btn-sm " href="#" mce_href="#"  data-toggle="modal" data-target="#edit" title="编辑" onclick="get(' + row.id + ')">编辑</a> ';
+                        var d = '<a class="btn btn-warning btn-sm " href="#" title="删除"  mce_href="#" onclick="remove(\''
+                            + row.id
+                            + '\')">删除</a> ';
+
+                        return e + d;
+                    }
+                }]
             });
     }
 
