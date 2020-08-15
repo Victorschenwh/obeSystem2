@@ -37,4 +37,7 @@ public interface TeacherMapper {
 
     @Select("select * from teacher where username = #{username} and password = #{password}")
     Teacher selectByUsernameAndPassword(String username, String password);
+
+    @Select("select * from teacher where email = #{email}")
+    Teacher selectByEmail(String email);
 }

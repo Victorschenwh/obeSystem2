@@ -9,4 +9,6 @@ public interface AdminService {
     int insertSelective(Admin record);
 
     Admin selectByUsernameAndPassword(String username, String password);
+
+    Admin selectByEmail(String email);
 }
