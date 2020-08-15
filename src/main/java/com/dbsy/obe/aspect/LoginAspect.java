@@ -26,6 +26,7 @@ public class LoginAspect {
 
     @Around("@annotation(com.dbsy.obe.annotation.Login)||@within(com.dbsy.obe.annotation.Login)")
     public Object around(ProceedingJoinPoint pJoinPoint) throws Throwable {
+
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
