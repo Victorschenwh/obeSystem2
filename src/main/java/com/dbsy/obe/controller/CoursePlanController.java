@@ -1,5 +1,7 @@
 package com.dbsy.obe.controller;
 
+import com.dbsy.obe.annotation.Authority;
+import com.dbsy.obe.myenum.Role;
 import com.dbsy.obe.pojo.CoursePlan;
 import com.dbsy.obe.service.CoursePlanService;
 import com.dbsy.obe.util.News;
@@ -15,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/coursePlan")
+//@Authority({Role.Admin})
 public class CoursePlanController {
 
     @Autowired
@@ -29,6 +32,7 @@ public class CoursePlanController {
     }
 
 
+//    @Authority({Role.Teacher})
     @RequestMapping("/list")
     @ResponseBody
     public Map list(Map map) {
@@ -77,12 +81,14 @@ public class CoursePlanController {
         return News.fail("添加失败");
     }
 
+//    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/get/{id}")
     public Map get(@PathVariable("id") int id) {
         return News.success("成功", coursePlanService.get(id));
     }
 
+//    @Authority({Role.Teacher})
     @ResponseBody
     @RequestMapping("/getAll")
     public Map getAll() {
