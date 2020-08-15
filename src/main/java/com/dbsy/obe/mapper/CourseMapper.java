@@ -32,4 +32,8 @@ public interface CourseMapper {
 
     @Select("select * from course")
     List<Course> getAll();
+
+
+    @Select("select * from course where department_id=#{departmentId}")
+    List<Course> getCourseByDepartmentId(int departmentId);
 }

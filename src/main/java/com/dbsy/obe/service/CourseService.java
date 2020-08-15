@@ -25,4 +25,6 @@ public interface CourseService {
     int batchRemove(int[] ids);
 
     List<Course> getAll();
+
+    List<Course> getCourseByDepartmentId(int departmentId);
 }

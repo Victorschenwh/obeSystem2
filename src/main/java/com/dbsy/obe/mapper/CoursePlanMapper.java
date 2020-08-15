@@ -1,5 +1,6 @@
 package com.dbsy.obe.mapper;
 
+import com.dbsy.obe.pojo.Clazz;
 import com.dbsy.obe.pojo.Course;
 import com.dbsy.obe.pojo.CoursePlan;
 import org.apache.ibatis.annotations.Delete;
@@ -34,4 +35,7 @@ public interface CoursePlanMapper {
 
     @Select("select * from course_plan")
     List<CoursePlan> getAll();
+
+    @Select("select * from course_plan where course_id=#{courseId}")
+    List<CoursePlan> getCoursePlanByCourseId(int courseId);
 }

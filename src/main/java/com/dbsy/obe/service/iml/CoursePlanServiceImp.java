@@ -84,4 +84,9 @@ public class CoursePlanServiceImp implements CoursePlanService {
     public List<CoursePlan> getAll() {
         return this.coursePlanMapper.getAll();
     }
+
+    @Override
+    public List<CoursePlan> getCoursePlanByCourseId(int courseId) {
+        return this.coursePlanMapper.getCoursePlanByCourseId(courseId);
+    }
 }

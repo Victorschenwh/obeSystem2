@@ -1,5 +1,6 @@
 package com.dbsy.obe.service;
 
+import com.dbsy.obe.pojo.Clazz;
 import com.dbsy.obe.pojo.CoursePlan;
 
 import java.util.List;
@@ -24,4 +25,6 @@ public interface CoursePlanService {
     int batchRemove(int[] ids);
 
     List<CoursePlan> getAll();
+
+    List<CoursePlan> getCoursePlanByCourseId(int courseId);
 }

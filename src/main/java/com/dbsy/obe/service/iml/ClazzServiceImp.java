@@ -85,4 +85,11 @@ public class ClazzServiceImp implements ClazzService {
     public List<Clazz> getAll() {
         return this.clazzMapper.getAll();
     }
+
+    @Override
+    public List<Clazz> getClazzByMajorId(int majorId) {
+        return this.clazzMapper.getClazzByMajorId(majorId);
+    }
+
+
 }

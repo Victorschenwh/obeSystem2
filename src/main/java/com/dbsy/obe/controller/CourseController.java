@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -95,4 +96,17 @@ public class CourseController {
     public Map getAll() {
         return News.success("成功", courseService.getAll());
     }
+
+    @Authority({Role.Teacher})
+    @ResponseBody
+    @RequestMapping("/getCourseByDepartmentId/{departmentId}")
+    public Map getCourseBydepartmentId(@PathVariable("departmentId") int departmentId){
+        List list = courseService.getCourseByDepartmentId(departmentId);
+        if (list != null) {
+            return News.success("成功",list);
+
+        }
+        return News.fail("查找失败");
+    }
+
 }
