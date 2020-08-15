@@ -1,122 +1,134 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:v-model="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="shortcut icon" href="favicon.ico"/>
-    <link rel="bookmark" href="favicon.ico"/>
-    <link href="h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="h-ui/css/H-ui.login.css" rel="stylesheet" type="text/css" />
-    <link href="h-ui/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
-    <link href="h-ui/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <!-- jquery.js -->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <!-- vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <script type="text/javascript" src="easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="h-ui/js/H-ui.js"></script>
-    <script type="text/javascript" src="h-ui/lib/icheck/jquery.icheck.min.js"></script>
+    <!-- vue.js -->
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
 
-    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <!-- vue-resource.min.js -->
+    <script
+            src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 
-    <script type="text/javascript">
-        $(function(){
-            //点击图片切换验证码
-            $("#vcodeImg").click(function(){
-                this.src="/cpacha?method=loginCapcha&t="+new Date().getTime();
-            });
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-            //登录
-            $("#submitBtn").click(function(){
-                var data = $("#form").serialize();
-                $.ajax({
-                    type: "post",
-                    url: "/cpacha?method=Login",
-                    data: data,
-                    dataType: "text", //返回数据类型
-                    success: function(msg){
-                        if("vcodeError" == msg){
-                            $.messager.alert("消息提醒", "验证码错误!", "warning");
-                            $("#vcodeImg").click();//切换验证码
-                            $("input[name='vcode']").val("");//清空验证码输入框
-                        } else if("loginError" == msg){
-                            $.messager.alert("消息提醒", "用户名或密码错误!", "warning");
-                            $("#vcodeImg").click();//切换验证码
-                            $("input[name='vcode']").val("");//清空验证码输入框
-                        } else if("loginSuccess" == msg){
-                            window.location.href = "SystemServlet?method=toAdminView";
-                        } else{
-                            alert(msg);
-                        }
-                    }
+    <!-- vue-router.js -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
-                });
-            });
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
-            //设置复选框
-            $(".skin-minimal input").iCheck({
-                radioClass: 'iradio-blue',
-                increaseArea: '25%'
-            });
-        })
-    </script>
-    <title>OBE</title>
-    <meta name="keywords" content="OBE">
+    <title>登录</title>
 </head>
-<body>
+<style>
+    .mar {
+        margin-top: 200px;
+    }
+</style>
+<body class="bg-info">
 
-<div class="header" style="padding: 0;">
-    <h2 style="color: white; width: 400px; height: 60px; line-height: 60px; margin: 0 0 0 30px; padding: 0;">工程教育认证宝</h2>
-</div>
-<div class="loginWraper">
-    <div id="loginform" class="loginBox">
-        <form id="form" class="form form-horizontal" method="post">
-            <div class="row cl">
-                <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-                <div class="formControls col-8">
-                    <input id="" name="account" type="text" placeholder="账户" class="input-text size-L">
+<div class="container" id="page">
+    <div class="row mar">
+        <div class="col-md-offset-3 col-md-6 form">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputEmail3" class="control-label col-md-3">用户名</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="用户名/工号"
+                               v-model:value="username">
+                    </div>
                 </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-                <div class="formControls col-8">
-                    <input  name="password" type="password" placeholder="密码" class="input-text size-L">
+                <div class="form-group">
+                    <label for="inputPassword3" class="control-label col-md-3">密码</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control col-md-8" id="inputPassword3" placeholder="密码"
+                               v-model:value="password">
+                    </div>
                 </div>
-            </div>
-            <div class="row cl">
-                <div class="formControls col-8 col-offset-3">
-                    <input class="input-text size-L" name="vcode" type="text" placeholder="请输入验证码" style="width: 200px;">
-                    <img title="点击图片切换验证码" id="vcodeImg" src="/cpacha?method=loginCapcha"></div>
-            </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" v-model="select">
+                            教师
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1" v-model="select">
+                            管理员
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="button" class="btn btn-primary" @click="login">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-            <div class="mt-20 skin-minimal" style="text-align: center;">
-                <div class="radio-box">
-                    <input type="radio" id="radio-2" name="type" checked value="2" />
-                    <label for="radio-1">学生</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="radio-3" name="type" value="3" />
-                    <label for="radio-2">老师</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="radio-1" name="type" value="1" />
-                    <label for="radio-3">管理员</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="formControls col-8 col-offset-3">
-                    <input id="submitBtn" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-                </div>
-            </div>
-        </form>
+    <div class="navbar-fixed-bottom hidden-xs hidden-sm">
+        <p class="text-info text-center">
+            东北石油大学
+        </p>
     </div>
 </div>
-<div class="footer">北京普开数据技术有限公司</div>
-
 
 </body>
+<script type="text/javascript">
+    //设置页面baseURL
+    //Vue.http.options.root = 'http://127.0.0.1/';
+    var page = new Vue({
+        el: '#page',
+        data: {
+            select: null,
+            password: null,
+            username: null
+        },
+        methods: {
+            doLogin: function (url) {
+                //解决后台接收不到参数的问题
+                var data = new URLSearchParams();
+                data.append('username', this.username)
+                data.append('password', this.password)
+                axios.post(url, data)
+                    .then(function (res) {
+                        //console.log(res)
+                        if (res.data.code == 1) {
+                            window.location.href = "/index";
+                        } else {
+                            alert(res.data.msg)
+                        }
+                    })
+                    .catch(function (error) {
+                        alert(error)
+                    });
+            },
+            login: function () {
+                if (this.select == "0")
+                    this.doLogin("/login/teacher")
+                else
+                    this.doLogin("/login/admin")
+            }
+        }
+    })
+</script>
 </html>

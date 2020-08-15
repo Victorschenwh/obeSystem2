@@ -26,7 +26,31 @@ public class Teacher {
 
     private String post;
 
-    public Teacher(Integer id, String username, String password, String name, Boolean gender, Date birthday, Integer titleId, Integer departmentId, String post) {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    private String phoneNumber;
+
+    private String email;
+
+    private Boolean isLock;
+
+
+    public Teacher(Integer id, String username, String password, String name, Boolean gender, Date birthday, Integer titleId, Integer departmentId, String post, String phoneNumber, String email, Boolean isLock) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -36,6 +60,17 @@ public class Teacher {
         this.titleId = titleId;
         this.departmentId = departmentId;
         this.post = post;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.isLock = isLock;
+    }
+
+    public Boolean getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(Boolean isLock) {
+        this.isLock = isLock;
     }
 
     public Teacher() {

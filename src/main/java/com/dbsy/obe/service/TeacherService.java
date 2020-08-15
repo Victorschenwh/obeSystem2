@@ -23,4 +23,6 @@ public interface TeacherService {
     int batchRemove(int[] ids);
 
     List<Teacher> getAll();
+
+    Teacher selectByUsernameAndPassword(String username, String password);
 }

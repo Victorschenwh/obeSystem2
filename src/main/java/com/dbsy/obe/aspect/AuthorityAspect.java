@@ -3,7 +3,6 @@ package com.dbsy.obe.aspect;
 import com.dbsy.obe.annotation.Authority;
 import com.dbsy.obe.myenum.Role;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -86,7 +85,8 @@ public class AuthorityAspect {
                     return pJoinPoint.proceed();
                 }
             }
-            if (pJoinPoint.proceed() instanceof String) {
+            //log.info(method.getReturnType().toString());
+            if (method.getReturnType().toString().equals("class java.lang.String")) {
                 response.sendRedirect("/");
                 return null;
             }
