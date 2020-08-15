@@ -64,7 +64,7 @@ public class TitleController {
         if (titleService.insert(title) > 0) {
             return News.success();
         }
-        return News.fail("编辑失败");
+        return News.fail("添加失败");
     }
 
 
@@ -74,7 +74,7 @@ public class TitleController {
         if (titleService.update(title) > 0) {
             return News.success();
         }
-        return News.fail("添加失败");
+        return News.fail("编辑失败");
     }
 
     @Authority({Role.Teacher})
