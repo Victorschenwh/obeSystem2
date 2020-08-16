@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -94,4 +95,18 @@ public class ClazzController {
     public Map getAll() {
         return News.success("成功", clazzService.getAll());
     }
+
+    @Authority({Role.Teacher})
+    @ResponseBody
+    @RequestMapping("/getClazzByMajorId/{majorId}")
+    public Map getClazzBymajorId(@PathVariable("majorId") int majorId){
+        List list = clazzService.getClazzByMajorId(majorId);
+        if (list != null) {
+            return News.success("成功",list);
+
+        }
+        return News.fail("查找失败");
+    }
+
+
 }

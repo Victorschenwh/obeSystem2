@@ -84,4 +84,10 @@ public class CourseServiceImp implements CourseService {
     public List<Course> getAll() {
         return this.courseMapper.getAll();
     }
+
+    @Override
+    public List<Course> getCourseByDepartmentId(int departmentId) {
+
+        return this.courseMapper.getCourseByDepartmentId(departmentId);
+    }
 }

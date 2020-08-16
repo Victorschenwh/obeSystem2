@@ -25,4 +25,6 @@ public interface ClazzService {
     int batchRemove(int[] ids);
 
     List<Clazz> getAll();
+
+    List<Clazz> getClazzByMajorId(int majorId);
 }

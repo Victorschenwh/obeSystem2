@@ -1,6 +1,7 @@
 package com.dbsy.obe.service;
 
 import com.dbsy.obe.pojo.CoursePoint;
+import com.dbsy.obe.pojo.Plan;
 
 import java.util.List;
 import java.util.Map;
@@ -23,4 +24,8 @@ public interface CoursePointService {
     int batchRemove(int[] ids);
 
     List<CoursePoint> getAll();
+
+    List<CoursePoint> getCoursePointsByCourseId(int courseId);
+
+    List<CoursePoint> getCoursePointsByPointId(int pointId);
 }

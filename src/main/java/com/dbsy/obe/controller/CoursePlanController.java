@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,6 +24,7 @@ public class CoursePlanController {
     @Autowired
     @Qualifier("coursePlanServiceImp")
     CoursePlanService coursePlanService;
+
 
 
     @Authority({Role.Teacher})
@@ -94,4 +96,19 @@ public class CoursePlanController {
     public Map getAll() {
         return News.success("成功", coursePlanService.getAll());
     }
+
+
+    @Authority({Role.Teacher})
+    @ResponseBody
+    @RequestMapping("/getCoursePlanByCourseId/{courseId}")
+    public Map getCoursePlanByCourseId(@PathVariable("courseId") int courseId){
+        List list = coursePlanService.getCoursePlanByCourseId(courseId);
+        if (list != null) {
+            return News.success("成功",list);
+
+        }
+        return News.fail("查找失败");
+    }
+
+
 }
