@@ -144,10 +144,36 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- 删除模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" >
+                        操作提示
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    确认要删除选择的数据吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="remove(id)" data-dismiss="modal">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
 </div>
 <div th:replace="static :: script"></div>
 </body>
-
+<script>disabled=''</script>
 <div th:if="${session.Teacher !=null ? true : false}">
     <script>
         var disabled="disabled";
@@ -231,6 +257,7 @@
                 showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                  //是否显示父子表
+                filterControl:true,
                 //得到查询的参数
                 queryParams: function (params) {
                     //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
@@ -252,12 +279,14 @@
                 }, {
                     field: 'year',
                     title: '培养方案版本',
+                    filterControl: "input",
                 }, {
                     field: 'introduce',
                     title: '培养方案介绍',
                 }, {
                     field: 'majorId',
                     title: '专业名称名称',
+                    filterControl: "select",
                     formatter: function (value, row, index) {
                         var major = {};
                         if (value != null) {
@@ -282,11 +311,20 @@
                     align: 'center',
                     formatter: function (value, row, index) {
                         var e = '<a  class="btn btn-primary btn-sm '+disabled+'" href="#" mce_href="#"  data-toggle="modal" data-target="#edit" title="编辑" onclick="get(' + row.id + ')">编辑</a> ';
-                        var d = '<a  class="btn btn-warning btn-sm '+disabled+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                        var d = '<a  class="btn btn-warning btn-sm '+disabled+'" href="#" title="删除"   mce_href="#" onclick="remove(\''
                             + row.id
                             + '\')">删除</a> ';
 
                         return e + d;
+                    },
+                    events:{
+                        'click a[title=删除]': function (e, value, row, index) {
+                            if(confirm('此操作不可逆，请确认是否删除？')){
+                                $.ajax({
+
+                                });
+                            }
+                        }
                     }
                 }]
             });
@@ -414,6 +452,8 @@
              }
          })
      }*/
+
+
 
 </script>
 </html>
