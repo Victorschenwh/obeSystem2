@@ -27,4 +27,6 @@ public interface TeacherService {
     Teacher selectByUsernameAndPassword(String username, String password);
 
     Teacher selectByEmail(String email);
+
+    int changePWByUsername(Teacher teacher);
 }

@@ -148,4 +148,22 @@ public class Teacher {
     public void setPost(String post) {
         this.post = post == null ? null : post.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                ", birthday=" + birthday +
+                ", titleId=" + titleId +
+                ", departmentId=" + departmentId +
+                ", post='" + post + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", isLock=" + isLock +
+                '}';
+    }
 }

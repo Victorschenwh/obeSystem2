@@ -1,5 +1,6 @@
 package com.dbsy.obe.mapper;
 
+import com.dbsy.obe.pojo.Clazz;
 import com.dbsy.obe.pojo.Teacher;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,6 +30,10 @@ public interface TeacherMapper {
             "department_id=#{departmentId},post=#{post},phone_number=#{phoneNumber},email=#{email},is_lock=#{isLock}" +
             " where id=#{id}")
     int update(Teacher teacher);
+
+    @Update("update teacher set password=#{password} where username=#{username}")
+    int changePWByUsername(Teacher teacher);
+
 
     int batchRemove(int[] ids);
 

@@ -30,4 +30,9 @@ public class AdminServiceImp implements AdminService {
     public Admin selectByEmail(String email) {
         return adminMapper.selectByEmail(email);
     }
+
+    @Override
+    public int changePWByUsername(Admin admin) {
+        return this.adminMapper.changePWByUsername(admin);
+    }
 }
