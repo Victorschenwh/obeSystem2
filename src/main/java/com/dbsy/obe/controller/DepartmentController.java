@@ -80,6 +80,7 @@ public class DepartmentController {
     }
 
     @ResponseBody
+    @Authority(Role.Teacher)
     @RequestMapping("/get/{id}")
     public Map get(@PathVariable("id") int id) {
         return News.success("成功", departmentService.get(id));
@@ -87,7 +88,7 @@ public class DepartmentController {
 
     @RequestMapping("/getAll")
     @ResponseBody
-//    @Authority(Role.Teacher)
+    @Authority(Role.Teacher)
     public Map getAll() {
         return News.success("学院数据请求成功", departmentService.getAll());
     }
