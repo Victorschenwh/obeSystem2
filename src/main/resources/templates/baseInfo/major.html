@@ -25,7 +25,6 @@
                     <li><a href="#">计算机学院</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">软件工程</a></li>
-
                 </ul>
             </div>
 
@@ -314,11 +313,20 @@
                         align: 'center',
                         formatter: function (value, row, index) {
                             var e = '<a  class="btn btn-primary btn-sm  '+disabled+'"   href="#" mce_href="#"  data-toggle="modal" data-target="#edit" title="编辑" onclick="get(' + row.id + ')">编辑</a> ';
-                            var d = '<a  class="btn btn-warning btn-sm  '+disabled+'"   href="#" title="删除"  data-toggle="modal" data-target="#myModal" mce_href="#" onclick="remove(\''
+                            var d = '<a  class="btn btn-warning btn-sm  '+disabled+'"   href="#" title="删除"   mce_href="#" onclick="remove(\''
                                 + row.id
                                 + '\')">删除</a> ';
 
                             return e + d;
+                        },
+                        events:{
+                            'click a[title=删除]': function (e, value, row, index) {
+                                if(confirm('此操作不可逆，请确认是否删除？')){
+                                    $.ajax({
+
+                                    });
+                                }
+                            }
                         }
                     }]
             });

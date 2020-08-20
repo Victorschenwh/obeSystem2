@@ -274,6 +274,15 @@
                             + '\')">删除</a> ';
 
                         return e + d;
+                    },
+                    events:{
+                        'click a[title=删除]': function (e, value, row, index) {
+                            if(confirm('此操作不可逆，请确认是否删除？')){
+                                $.ajax({
+
+                                });
+                            }
+                        }
                     }
                 }]
             });
